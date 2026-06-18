@@ -1,6 +1,4 @@
-package model;
-
-public class Item {
+class Item {
     private String nome;
     private String descricao;
 
@@ -10,13 +8,9 @@ public class Item {
     }
 
     public String getNome() { return nome; }
-    public void setNome(String nome) { this.nome = nome; }
-
     public String getDescricao() { return descricao; }
-    public void setDescricao(String descricao) { this.descricao = descricao; }
 
-    @Override
     public String toString() {
-        return nome + " (" + descricao + ")";
+        return nome + " - " + descricao;
     }
 }
