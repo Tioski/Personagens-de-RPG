@@ -61,8 +61,3 @@ src/
 - **Gerenciar itens** — atribui item comum ou item especial a qualquer personagem
 - **Simular ações** — atacar, usar habilidade especial, curar (quando disponível)
 
----
-
-## Diagrama de Classes
-
-Consulte o arquivo `diagrama.mermaid` — pode ser visualizado em [mermaid.live](https://mermaid.live).
