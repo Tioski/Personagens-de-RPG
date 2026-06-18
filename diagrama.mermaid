@@ -1,0 +1,102 @@
+classDiagram
+    direction TB
+
+    class Combatente {
+        <<interface>>
+        +atacar(alvo: String)
+        +usarHabilidadeEspecial()
+        +getStatus() String
+    }
+
+    class Curavel {
+        <<interface>>
+        +curar(quantidade: int)
+    }
+
+    class Item {
+        -nome: String
+        -descricao: String
+        +getNome() String
+        +setNome(nome: String)
+        +getDescricao() String
+        +setDescricao(descricao: String)
+        +toString() String
+    }
+
+    class Personagem {
+        <<abstract>>
+        -nome: String
+        -vida: int
+        -ataque: int
+        -item: Item
+        -itemEspecial: Item
+        +getNome() String
+        +getVida() int
+        +getAtaque() int
+        +getItem() Item
+        +getItemEspecial() Item
+        +atacar(alvo: String)
+        +usarHabilidadeEspecial()*
+        +getTipo()* String
+        +getStatus() String
+    }
+
+    class Mago {
+        +usarHabilidadeEspecial()
+        +getTipo() String
+    }
+
+    class Cavaleiro {
+        +usarHabilidadeEspecial()
+        +getTipo() String
+    }
+
+    class Curandeiro {
+        +usarHabilidadeEspecial()
+        +curar(quantidade: int)
+        +getTipo() String
+    }
+
+    class MagoSombrio {
+        +usarHabilidadeEspecial()
+        +getTipo() String
+    }
+
+    class CavaleiroSagrado {
+        +usarHabilidadeEspecial()
+        +curar(quantidade: int)
+        +getTipo() String
+    }
+
+    class GerenciadorPersonagens {
+        -personagens: List~Personagem~
+        +adicionar(p: Personagem)
+        +listar() List~Personagem~
+        +buscarPorIndice(i: int) Personagem
+        +total() int
+    }
+
+    class Main {
+        +main(args: String[])
+        -criarPersonagem()
+        -visualizarPersonagens()
+        -gerenciarItens()
+        -simularAcoes()
+    }
+
+    %% Implementações de interface
+    Personagem ..|> Combatente
+    Curandeiro ..|> Curavel
+    CavaleiroSagrado ..|> Curavel
+
+    %% Herança
+    Mago --|> Personagem
+    Cavaleiro --|> Personagem
+    Curandeiro --|> Personagem
+    MagoSombrio --|> Mago
+    CavaleiroSagrado --|> Cavaleiro
+
+    %% Associação
+    Personagem "1" o-- "0..2" Item : possui
+    GerenciadorPersonagens "1" o-- "0..*" Personagem : gerencia
+    Main --> GerenciadorPersonagens : usa
